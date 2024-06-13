@@ -29,10 +29,11 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+# Uygulamalarımızı burda tanımlicaz
 INSTALLED_APPS = [
+    'myapp.apps.MyappConfig',
     'django.contrib.admin',
-    'django.contrib.auth',
+    'django.contrib.auth', 
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
