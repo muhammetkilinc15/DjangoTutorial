@@ -6,9 +6,9 @@ from django.urls import reverse
 
 # Data Source 
 data = {
-    "phone":"telefon kategorisindeki ürünler",
-    "computer":"bilgisayar kategorisindeki ürünler",
-    "electronic":"elektronik kategorisindeki ürünler"
+    "phone":["Samsung s22","Iphone x","Oppo"],
+    "computer":["Monster","MSI","Asus"],
+    "electronic":[]
 }
 
 
@@ -52,10 +52,10 @@ def getProductsByCategoryId(request, category_id):
 # http://127.0.0.1:8000/products/{phone,computer,electronic}
 def getProductsByCategory(request, category):
     try:
-        category_text = data[category]        
+        products = data[category]     
         return render(request,"myapp/products.html",{
             "category":category,
-            "category_text":category_text
+            "products":products
         })
     except:
         return HttpResponseNotFound('<h1>Incorrect Category</h1>')
