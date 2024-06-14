@@ -24,7 +24,6 @@ from django.urls import include, path
 # http://127.0.0.1:8000/products/index
 # http://127.0.0.1:8000/products/details
 urlpatterns = [
-    path('products/',include('myapp.urls')),
-    path('admin/', admin.site.urls),
-    
+    path('products/', include('myapp.urls')),
+    path('admin/', admin.site.urls)
 ]
