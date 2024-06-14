@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block page_title %}
+  Products
+{% endblock page_title %}
+  Products
+
+
+{% block content %}
+
+<h1>{{category|title}} products: </h1>
+<p>{{now  | date:"SHORT_DATE_FORMAT"}}</p>
+
+<div>
+  <ul>
+      {% if products %} <!-- check the products array is empty -->
+          {% for product in products %}
+              <li>{{ product }}</li>
+          {% endfor %}
+      {% else %}
+         {% include "partials/_no_product.html" %}
+      {% endif %}
+  </ul>
+</div>
+
+
+
+{% endblock content %}
+
+
+
+
