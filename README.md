@@ -1,4 +1,8 @@
 # DjangoTutorial
+
+--> Dersea ait tüm notlar https://docs.google.com/document/d/1FN8M1wOmM-HwvC_xYfmfvupB7Nq6sikhX9aR10g5qqc/edit?usp=sharing erişebilirsiniz.
+
+
 **Django nedir ?**
 
 Django, yüksek seviyeli bir Python web framework'üdür ve hızlı, güvenli, ve ölçeklenebilir web uygulamaları geliştirmeyi sağlar. Model-View-Controller (MVC) mimarisini kullanarak karmaşık veritabanı işlemlerini basitleştirir ve yerleşik yönetim paneli, kullanıcı kimlik doğrulaması ve form işleme gibi pek çok özelliği bizlere sunar.
