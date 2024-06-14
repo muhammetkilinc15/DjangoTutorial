@@ -23,13 +23,13 @@ electronicData = {
 def index(request):
     list_items = ""
     category_list = list(data.keys())
-    return render(request,'myapp/index.html',{
+    return render(request,'index.html',{
         "categories":category_list
     })
 
 def electronicPage(request):
     list_item = list(electronicData.values())
-    return render(request,"myapp/Electronics.html",{
+    return render(request,"Electronics.html",{
         "electronic":electronicData
     })
 
@@ -54,7 +54,7 @@ def getProductsByCategoryId(request, category_id):
 def getProductsByCategory(request, category):
     try:
         products = data[category]     
-        return render(request,"myapp/products.html",{
+        return render(request,"products.html",{
             "category":category,
             "products":products,
             "now":datetime.now
