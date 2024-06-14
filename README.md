@@ -1,6 +1,6 @@
 # DjangoTutorial
 
---> Dersea ait tüm notlar https://docs.google.com/document/d/1FN8M1wOmM-HwvC_xYfmfvupB7Nq6sikhX9aR10g5qqc/edit?usp=sharing erişebilirsiniz.
+**Derse ait tüm notlar:**   https://docs.google.com/document/d/1FN8M1wOmM-HwvC_xYfmfvupB7Nq6sikhX9aR10g5qqc/edit?usp=sharing erişebilirsiniz.
 
 
 **Django nedir ?**
