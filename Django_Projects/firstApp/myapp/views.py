@@ -1,14 +1,15 @@
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import redirect,render
 from django.urls import reverse
+from datetime import datetime
 # Create your views here.
 
 
 # Data Source 
 data = {
-    "phone":"telefon kategorisindeki ürünler",
-    "computer":"bilgisayar kategorisindeki ürünler",
-    "electronic":"elektronik kategorisindeki ürünler"
+    "phone":["Samsung s22","Iphone x","Oppo"],
+    "computer":["Monster","MSI","Asus"],
+    "electronic":[]
 }
 
 
@@ -26,7 +27,7 @@ def index(request):
         "categories":category_list
     })
 
-def electronic(request):
+def electronicPage(request):
     list_item = list(electronicData.values())
     return render(request,"myapp/Electronics.html",{
         "electronic":electronicData
@@ -52,10 +53,11 @@ def getProductsByCategoryId(request, category_id):
 # http://127.0.0.1:8000/products/{phone,computer,electronic}
 def getProductsByCategory(request, category):
     try:
-        category_text = data[category]        
+        products = data[category]     
         return render(request,"myapp/products.html",{
             "category":category,
-            "category_text":category_text
+            "products":products,
+            "now":datetime.now
         })
     except:
         return HttpResponseNotFound('<h1>Incorrect Category</h1>')
