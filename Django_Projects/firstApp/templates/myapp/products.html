@@ -6,7 +6,9 @@
     <title>{{category}}</title>
   </head>
   <body>
-    <h1>Category name : {{category}}</h1>
+    <h1>Category name : {{category|title}}</h1>
+    <p>{{now  | date:"SHORT_DATE_FORMAT"}}</p>
+    
     <div>
       <ul>
           {% if products %} <!-- check the products array is empty -->
