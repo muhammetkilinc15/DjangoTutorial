@@ -26,7 +26,7 @@ def index(request):
         "categories":category_list
     })
 
-def electronic(request):
+def electronicPage(request):
     list_item = list(electronicData.values())
     return render(request,"myapp/Electronics.html",{
         "electronic":electronicData
