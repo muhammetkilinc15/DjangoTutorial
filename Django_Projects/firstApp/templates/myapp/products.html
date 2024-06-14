@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{category}}</title>
-</head>
-<body>
-    <h1>Ürün Bilgisi {{category}}</h1>
-    <p>
-        {{category_text}}
-    </p>
-</body>
+  </head>
+  <body>
+    <h1>Category name : {{category}}</h1>
+    <div>
+      <ul>
+          {% if products %} <!-- check the products array is empty -->
+              {% for product in products %}
+                  <li>{{ product }}</li>
+              {% endfor %}
+          {% else %}
+              <div>No Products</div>
+          {% endif %}
+      </ul>
+  </div>
+  
+  </body>
 </html>
