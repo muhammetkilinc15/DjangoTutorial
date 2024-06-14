@@ -1,5 +1,5 @@
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
-from django.shortcuts import redirect
+from django.shortcuts import redirect,render
 from django.urls import reverse
 # Create your views here.
 
@@ -12,15 +12,27 @@ data = {
 }
 
 
+electronicData = {
+    "computer":["Monster","Macbook","Samsung"],
+    "phone" : ["Iphone","Xamio","Oppo"],
+    "keyboards": ["Monster","Regex"]
+}
+
 # http://127.0.0.1:8000/products/
 def index(request):
     list_items = ""
     category_list = list(data.keys())
-    for category in category_list:
-        redirect_Path = reverse("products_by_category", args=[category]) #dynamically creates url for us
-        list_items += f'<li><a href="{redirect_Path}">{category}</a></li>'
-    html = f'<ul>{list_items}</ul>'
-    return HttpResponse(html)
+    return render(request,'myapp/index.html',{
+        "categories":category_list
+    })
+
+def electronic(request):
+    list_item = list(electronicData.values())
+    return render(request,"myapp/Electronics.html",{
+        "electronic":electronicData
+    })
+
+
 
 # http://127.0.0.1:8000/products/details/
 def details(request):
@@ -41,6 +53,9 @@ def getProductsByCategoryId(request, category_id):
 def getProductsByCategory(request, category):
     try:
         category_text = data[category]        
-        return HttpResponse(f'<h1>{category_text}</h1>')
+        return render(request,"myapp/products.html",{
+            "category":category,
+            "category_text":category_text
+        })
     except:
         return HttpResponseNotFound('<h1>Incorrect Category</h1>')
