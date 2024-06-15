@@ -6,20 +6,24 @@ Index
 {% endblock page_title %}
 
 {% block css_files %}
-<link rel="stylesheet" href="{% static "css/style.css" %}"> <!-- style.css statik dosyası index.html de kullanılacak-->
+<link rel="stylesheet" href="{% static "css/style.css" %}"> <!-- global style.css statik dosyası index.html de kullanılacak-->
 
 {% endblock %}
 {% block content %}
-<h1>Index Page</h1>
-<ul>
-  {% for categoryName in categories %}
- 
-    <li> 
-        <a href="{% url "products_by_category" category=categoryName %}"> {{categoryName}} </a>
-    </li>
- 
-  {% endfor %}
-</ul>
+
+<div class="container">
+  <div class="row mt-2">
+    <div class="col">
+        {% for categoryName in categories %}
+       
+              <a class="btn btn-outline-dark
+              " href="{% url "products_by_category" category=categoryName %}"> {{categoryName}} </a>
+        
+        {% endfor %}
+    </div>
+  </div>
+</div>
+
 
 
 {% endblock  %}
