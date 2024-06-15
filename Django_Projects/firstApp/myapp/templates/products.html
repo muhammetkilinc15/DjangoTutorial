@@ -1,31 +1,49 @@
 {% extends "layout.html" %}
-{% block page_title %}
-  Products
-{% endblock page_title %}
-  Products
+ 
+{% block page_title %} Products {% endblock page_title %} 
 
+{% load static %} 
+<link rel="stylesheet" href="{% static "css/style.css" %}}"> 
 
+<!-- Block Content start-->
 {% block content %}
+<div class="container">
+  <div class="row">
+      <h1>{{category|title}} products:</h1>
+      <p>{{now | date:"SHORT_DATE_FORMAT"}}</p>
+  </div>
+  <hr>
+  <div class="row">
+    {% if products %}
+    <!-- check the products array is empty -->
+      {% for product in products %}
+      <div class="card mb-3" >
+        <div class="row g-0">
+          <div class="col-md-3">
+            <img class="card-img-top" src="{% static "images/1.jpeg" %}" alt="Card image cap">
+          </div>
+          <div class="col-md-9">
+            <div class="card-body">
+              <h5 class="card-title">{{ product }}</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>  
+      </div>
 
-<h1>{{category|title}} products: </h1>
-<p>{{now  | date:"SHORT_DATE_FORMAT"}}</p>
 
-<div>
-  <ul>
-      {% if products %} <!-- check the products array is empty -->
-          {% for product in products %}
-              <li>{{ product }}</li>
-          {% endfor %}
-      {% else %}
-         {% include "partials/_no_product.html" %}
-      {% endif %}
-  </ul>
+
+          
+        
+          {% endfor %} 
+        {% else %} 
+    
+      {% include "partials/_no_product.html" %} 
+    
+    {% endif%}
+  </div>
+</div>
 </div>
 
-
-
 {% endblock content %}
-
-
-
-
