@@ -7,7 +7,7 @@ from datetime import datetime
 
 # Data Source 
 data = {
-    "phone":["Samsung s22","Iphone x","Oppo"],
+    "phone":["Samsung s22","Iphone x","Oppo","Iphone 15 Pro"],
     "computer":["Monster","MSI","Asus"],
     "electronic":[]
 }
