@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import redirect,render
 from django.urls import reverse
 from datetime import datetime
+from .models import Product
 # Create your views here.
 
 
@@ -21,10 +22,9 @@ electronicData = {
 
 # http://127.0.0.1:8000/products/
 def index(request):
-    list_items = ""
-    category_list = list(data.keys())
+    products = Product.objects.all()
     return render(request,'index.html',{
-        "categories":category_list
+        "products":products
     })
 
 def electronicPage(request):
