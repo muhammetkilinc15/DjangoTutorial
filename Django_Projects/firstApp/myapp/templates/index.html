@@ -10,16 +10,17 @@ Index
 
 {% endblock %}
 {% block content %}
-
+<h5 class="text-center">Total Count : {{ProductCount}}</h5>
+<h5 class="text-center">Average Price: {{Avg_Price.Price__avg}}</h5>
 <div class="container">
   <div class="row mt-2">
     <div class="col">
       <ul>
         {% for product in products %}
         <li>
-         <a href="{{details|add:product.Name}}"> {{product.Name}} - {{product.Price}}
+         <a href="{% url "product_details" product.slug %}"> {{product.Name}}  <a/>- {{product.Price}}
         </li>
-        <a/>
+       
         {% endfor %}
       </ul>    
     </div>
