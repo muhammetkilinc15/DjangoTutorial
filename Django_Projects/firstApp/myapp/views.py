@@ -4,7 +4,7 @@ from django.urls import reverse
 from datetime import datetime
 from .models import Product
 from django.shortcuts import get_object_or_404
-
+from django.db.models import Avg
 # Create your views here.
 
 
@@ -24,9 +24,13 @@ electronicData = {
 
 # http://127.0.0.1:8000/products/
 def index(request):
-    products = Product.objects.all()
+    products = Product.objects.order_by("-Price")
+    productCount = Product.objects.count()
+    avg_price = Product.objects.filter(isActive=True).aggregate(Avg("Price"))
     return render(request,'index.html',{
-        "products":products
+        "products":products,
+        "ProductCount":productCount,
+        "Avg_Price":avg_price
     })
 
 def electronicPage(request):
@@ -38,8 +42,8 @@ def electronicPage(request):
 
 
 # http://127.0.0.1:8000/products/details/
-def details(request,id):
-    product = get_object_or_404(Product,pk=id)
+def details(request,slug):
+    product = get_object_or_404(Product,slug=slug)
     context = {
         "product":product
     }
