@@ -10,9 +10,9 @@ class Product(models.Model):
     ImageUrl = models.CharField(max_length=20)
     isActive = models.BooleanField(default=False)
     Category = models.CharField(max_length=50,null=True)
-    slug = models.SlugField(default="",null=False)
+    slug = models.SlugField(default="",null=False,db_index=True,unique=True)
     
-    # Samsung s-21
+    # slugify ile slug alanına Samsung S 22 degil de Samsung-S-22 yazilacak 
     def save(self, *args,**kargs):
         self.slug= slugify(self.Name)
         super().save(args,kargs)
