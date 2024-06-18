@@ -19,8 +19,8 @@ class Product(models.Model):
     description = models.CharField(max_length=200)
     ImageUrl = models.CharField(max_length=20)
     isActive = models.BooleanField(default=False)
-    Category = models.ForeignKey(Category,on_delete=models.CASCADE,null=True,related_name="products")
     slug = models.SlugField(default="",blank=True,null=False,db_index=True,unique=True)
+    Category = models.ManyToManyField(Category)
 
     # Özelliştirilmiş Verileri döndüren method
     def __str__(self):
