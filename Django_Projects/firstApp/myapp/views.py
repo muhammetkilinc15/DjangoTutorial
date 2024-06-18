@@ -1,7 +1,10 @@
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect,Http404
 from django.shortcuts import redirect,render
 from django.urls import reverse
 from datetime import datetime
+from .models import Product
+from django.shortcuts import get_object_or_404
+
 # Create your views here.
 
 
@@ -21,10 +24,9 @@ electronicData = {
 
 # http://127.0.0.1:8000/products/
 def index(request):
-    list_items = ""
-    category_list = list(data.keys())
+    products = Product.objects.all()
     return render(request,'index.html',{
-        "categories":category_list
+        "products":products
     })
 
 def electronicPage(request):
@@ -36,8 +38,12 @@ def electronicPage(request):
 
 
 # http://127.0.0.1:8000/products/details/
-def details(request):
-    return HttpResponse("details")
+def details(request,id):
+    product = get_object_or_404(Product,pk=id)
+    context = {
+        "product":product
+    }
+    return render(request,"details.html",context)
 
 # http://127.0.0.1:8000/products/{1,2,3...}
 def getProductsByCategoryId(request, category_id):
