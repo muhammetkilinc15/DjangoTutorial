@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block css_files %}{% endblock  %}
+
+{% block page_title %}
+    {{product.Name}}
+{% endblock page_title %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>{{product.Name}}</h1>
+            <p>{{product.description}}</p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}
