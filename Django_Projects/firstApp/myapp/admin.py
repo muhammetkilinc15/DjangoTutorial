@@ -19,7 +19,7 @@ admin.site.register(Category, CategoryAdmin)
 
 class ProductAdmin(admin.ModelAdmin):
     # Admin panelinde listede gösterilecek alanlar
-    list_display = ("Name", "Price","Category","isActive")
+    list_display = ("Name", "Price","isActive","Categories")
     
     # Slug alanını Name alanına göre otomatik doldurmak için prepopulated_fields
     prepopulated_fields = {"slug": ("Name",)}
@@ -32,13 +32,19 @@ class ProductAdmin(admin.ModelAdmin):
     
     
     # Admin panelinde filtreleme yapılacak alanlar
-    list_filter = ("Name", "Category")
+    list_filter = ("Name","Category")
     
     # Admin panelinde düzenlenebilir alanlar
     #list_editable = ("isActive",)
     
     # Admin panelinde aranabilir alanlar
     search_fields = ("Name",)
+    
+    def Categories(self,obj): 
+        html = ""
+        for categoryy in obj.Category.all():
+            html+=categoryy.Name +" "
+        return html
     
     
     
