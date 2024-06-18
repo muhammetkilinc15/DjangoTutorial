@@ -17,7 +17,7 @@ Index
       <ul>
         {% for product in products %}
         <li>
-         <a href=""> {{product.Name}} - {{product.Price}}
+         <a href="{{details|add:product.Name}}"> {{product.Name}} - {{product.Price}}
         </li>
         <a/>
         {% endfor %}
