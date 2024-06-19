@@ -15,7 +15,13 @@ Index
 <div class="container">
   <div class="row mt-2">
     <div class="col">
+      <form action="list" method="GET">
+        Kelime : <input type="text" name="q">
+        <button type="submit" class="btn btn-dark">Ara</button>
+      </form>
+      
       <ul>
+        <p class=" text-danger mt-3">Onaylı Ürünler</p>
         {% for product in products %}
         <li>
          <a href="{% url "product_details" product.slug %}"> {{product.Name}}  <a/>- {{product.Price}}
