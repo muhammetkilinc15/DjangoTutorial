@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product ,Category
+from .models import Product ,Category, Adress,Supplier
 # Register your models here.
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -15,11 +15,11 @@ class CategoryAdmin(admin.ModelAdmin):
     # Admin panelinde aranabilir alanlar
     search_fields = ("Name",)
 
-admin.site.register(Category, CategoryAdmin)
+
 
 class ProductAdmin(admin.ModelAdmin):
     # Admin panelinde listede gösterilecek alanlar
-    list_display = ("Name", "Price","isActive","Categories")
+    list_display = ("Name", "Price","isActive","Categories","Supplier")
     
     # Slug alanını Name alanına göre otomatik doldurmak için prepopulated_fields
     prepopulated_fields = {"slug": ("Name",)}
@@ -43,9 +43,15 @@ class ProductAdmin(admin.ModelAdmin):
     def Categories(self,obj): 
         html = ""
         for categoryy in obj.Category.all():
-            html+=categoryy.Name +" "
+            html+=categoryy.Name + " - "
         return html
+
+   
     
     
-    
+
+admin.site.register(Supplier)
+admin.site.register(Adress)
 admin.site.register(Product ,ProductAdmin)
+admin.site.register(Category, CategoryAdmin)
+
