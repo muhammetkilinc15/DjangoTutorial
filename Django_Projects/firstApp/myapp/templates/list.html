@@ -2,7 +2,7 @@
 {% load static %} <!-- statik dosyalar için gerekli-->
 
 {% block page_title %}
-Index
+list.html
 {% endblock page_title %}
 
 {% block css_files %}
@@ -15,13 +15,8 @@ Index
 <div class="container">
   <div class="row mt-2">
     <div class="col">
-      <form action="list" method="GET">
-        Kelime : <input type="text" name="q">
-        <button type="submit" class="btn btn-dark">Ara</button>
-      </form>
-      
       <ul>
-        <p class=" text-danger mt-3">Onaylı Ürünler</p>
+        <p class="text-danger">Tüm  Ürünler</p>
         {% for product in products %}
         <li>
          <a href="{% url "product_details" product.slug %}"> {{product.Name}}  <a/>- {{product.Price}}
@@ -32,7 +27,6 @@ Index
     </div>
   </div>
 </div>
-
 
 
 {% endblock  %}
