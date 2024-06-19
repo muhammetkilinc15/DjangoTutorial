@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 # Uygulamalarımızı burda tanımlicaz
 INSTALLED_APPS = [
-    'myapp.apps.MyappConfig',
+    'myapp',
     'django.contrib.admin',
     'django.contrib.auth', 
     'django.contrib.contenttypes',
@@ -80,6 +80,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        'OPTIONS': {
+            'timeout': 30,  # Adjust timeout value as needed
+        },
     }
 }
 
