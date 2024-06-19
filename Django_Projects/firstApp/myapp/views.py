@@ -2,9 +2,11 @@ from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import redirect,render
 from django.urls import reverse
 from datetime import datetime
-from .models import Product
+from myapp.models import Product
 from django.shortcuts import get_object_or_404
 from django.db.models import Avg
+from django.urls import path
+
 # Create your views here.
 
 
@@ -24,7 +26,7 @@ electronicData = {
 
 # http://127.0.0.1:8000/products/
 def index(request):
-    products = Product.objects.order_by("-Price")
+    products = Product.objects.filter(isActive=True). order_by("-Price")
     productCount = Product.objects.count()
     avg_price = Product.objects.filter(isActive=True).aggregate(Avg("Price"))
     return render(request,'index.html',{
@@ -33,12 +35,20 @@ def index(request):
         "Avg_Price":avg_price
     })
 
-def electronicPage(request):
-    list_item = list(electronicData.values())
-    return render(request,"Electronics.html",{
-        "electronic":electronicData
-    })
-
+def list(request):
+    if request.GET['q'] and request.GET['q'] is not None :
+        q = request.GET['q']
+        products = Product.objects.filter(Name__contains=q).order_by("-Price")
+        print(request.GET['q'])
+    else :
+        products = Product.objects.all().order_by("-Price")
+       
+    
+    context = {
+        "products":products
+    }   
+    
+    return render(request,"list.html",context)
 
 
 # http://127.0.0.1:8000/products/details/
@@ -49,25 +59,18 @@ def details(request,slug):
     }
     return render(request,"details.html",context)
 
-# http://127.0.0.1:8000/products/{1,2,3...}
-def getProductsByCategoryId(request, category_id):
-    category_list = list(data.keys())
-    if category_id > len(category_list) or category_id <=0:
-        return HttpResponseNotFound("<h5>Invalid Category selection :(</h5>")
-    
-    category_Name = category_list[category_id-1]
-   
-    redirect_Path = reverse("products_by_category",args=[category_Name])
-    return redirect(redirect_Path)
 
-# http://127.0.0.1:8000/products/{phone,computer,electronic}
-def getProductsByCategory(request, category):
-    try:
-        products = data[category]     
-        return render(request,"products.html",{
-            "category":category,
-            "products":products,
-            "now":datetime.now
-        })
-    except:
-        return HttpResponseNotFound('<h1>Incorrect Category</h1>')
+
+def create(request):
+    if request.method == 'POST':
+        pName = request.POST["Name"]
+        Price = request.POST["Price"]
+        description = request.POST["description"]
+        ImageUrl = request.POST["ImageUrl"]
+        slug = request.POST["slug"]
+        
+        p1 = Product(Name=pName,description=description,Price=Price,ImageUrl=ImageUrl,slug=slug)
+        p1.save()
+        return redirect("index")
+    return render(request,"create.html")
+
