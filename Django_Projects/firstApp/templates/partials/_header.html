@@ -2,7 +2,9 @@
 <header>
   <nav class="navbar navbar-dark bg-primary mb3">
     <div class="container">
-      <a class="navbar-brand"href="/products">Ana Sayfa</a>
+      <a class="navbar-brand"href="{% url "index" %}">Ana Sayfa</a>
+      <a class="navbar-brand"href="/list?q=">Tüm ürünler</a>
+      <a class="navbar-brand"href="{% url "create_product" %}">Yeni ürün Olustur</a>
     </div>
   </nav>  
 </header>
